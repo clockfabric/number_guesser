@@ -52,6 +52,7 @@ function playGame() {
 function gameOver() {
 	guessButton.innerText = "Refresh to play again!";
 	guessButton.disabled = true;
+	inputNumber.disabled = true;
 }
 
 guessButton.addEventListener("click", playGame);
