@@ -1,0 +1,25 @@
+p {
+	width: 500px;
+}
+
+.guesses {
+	margin: 15px 0;
+}
+
+.guess {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.message {
+	width: 500px;
+	height: 25px;
+	padding-top: 10px;
+	padding-left: 10px;
+	background-color: red;
+	color: white;
+}
+
+.winning_message {
+	background-color: green;
+}
