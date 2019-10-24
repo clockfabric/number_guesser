@@ -4,11 +4,14 @@ let number = Math.floor(Math.random() * 100) + 1;
 let numberOfGuesses = 0;
 
 let inputNumber = document.querySelector("#input_number");
+inputNumber.focus();
+
 let messageAlert = document.querySelector(".message");
 let guesses = document.querySelector(".guesses");
 
 let guessButton = document.querySelector(".guess_button");
-guessButton.addEventListener("click", () => {
+
+function playGame() {
 	let guessedNumber = inputNumber.value;
 
 	if (isNaN(guessedNumber)) {
@@ -25,8 +28,7 @@ guessButton.addEventListener("click", () => {
 				messageAlert.classList.add("winning_message");
 				messageAlert.innerHTML =
 					"Your guess of " + guessedNumber + " is correct!";
-				guessButton.innerText = "Refresh to play again!";
-				guessButton.disabled = true;
+				gameOver();
 			}
 			let guessItem = document.createElement("span");
 			guessItem.classList.add("guess");
@@ -35,12 +37,28 @@ guessButton.addEventListener("click", () => {
 
 			if (numberOfGuesses >= 9) {
 				messageAlert.innerHTML = "Sorry you ran out of 10 guesses!!!";
-				guessButton.innerText = "Refresh to play again!";
-				guessButton.disabled = true;
+				gameOver();
 			}
 			numberOfGuesses++;
 		}
 	}
 
+	inputNumber.value = "";
+	inputNumber.focus();
+
 	//console.log(guessedNumber);
+}
+
+function gameOver() {
+	guessButton.innerText = "Refresh to play again!";
+	guessButton.disabled = true;
+}
+
+guessButton.addEventListener("click", playGame);
+
+inputNumber.addEventListener("keyup", event => {
+	event.preventDefault();
+	if (event.keyCode === 13) {
+		guessButton.click();
+	}
 });
